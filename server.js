@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const products = require('./products.json');
+app.use(express.json());
 
-app.get('/api/products', (req, res) => {
-    res.json(products);
-});
+const productRoutes = require('./index');
+
+app.use('/api', productRoutes);
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
 });
